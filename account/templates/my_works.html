@@ -1,0 +1,69 @@
+{% extends 'dashboard.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="table-responsive table-shadow" style="background-color: bisque;">
+    
+  {% if my_work %}
+  <table class="table">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">User</th>
+            <th scope="col">Phone</th>
+            
+            <th scope="col">Location</th>
+            <th scope="col">Wanted date</th>
+            <th scope="col">Battery Type</th>
+            <th scope="col">Unit</th>
+            <th scope="col">Status</th>
+            <th scope="col">Booking Date</th>
+            <th scope="col">Payment Status</th>
+            <th scope="col">Update Status</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in my_work %}
+          <tr style="background-color: #d9a3a3;">
+
+            <td>{{ i.user.username}}</td>
+            <td>{{ i.user_details.phone}}</td>
+            
+            <td>{{ i.location}}</td>
+            <td>{{ i.wanted_date}}</td>
+            <td>{{ i.battery_type}}</td>
+            <td>{{ i.unit}}</td>
+            
+            {% if i.booking_status == 'processing' %}
+            <td style="color:rgb(235, 78, 16);font-weight: bold">{{ i.booking_status }}</td>
+            {% endif %}
+            {% if i.booking_status == 'accepted' %}
+            <td style="color:rgb(16, 235, 16);font-weight: bold">{{ i.booking_status }}</td>
+            {% endif %}
+            {% if i.booking_status == 'rejected' %}
+            <td style="color:rgb(235, 16, 16);font-weight: bold">{{ i.booking_status }}</td>
+            {% endif %}
+            <td>{{ i.date }}</td>
+            <td>{{ i.paid }}</td>
+            <td><a href="{% url 'update_booking' i.id %}">Update Status</a></td>
+
+
+           
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+
+  </table>
+  {% else %}
+
+  <span>No Leaves can be found...</span>
+  {% endif %}
+
+</div>
+
+{% endblock %}

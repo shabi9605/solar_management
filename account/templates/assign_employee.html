@@ -1,0 +1,28 @@
+{% extends 'dashboard.html' %}
+
+
+{% block content %}
+
+
+<div>
+
+    <form action="" method="POST"> 
+        {% csrf_token %}
+        
+        <label for="employee" >Select Employee: </label> <select name="employee" >
+            {% for i in available_employees %}
+            <option value="{{i.id}}" name="employee">{{i.user.username}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value='Assign'>
+    
+    </form>
+    
+    
+    
+    
+    </div>
+
+
+
+{% endblock %}

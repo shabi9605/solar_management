@@ -1,0 +1,52 @@
+{% extends 'dashboard.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="table-responsive table-shadow" style="background-color: bisque;">
+    
+  {% if my_complaint %}
+  <table class="table">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">User</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Allotted Employee</th>
+            <th scope="col">Location</th>
+            <th scope="col">Complaint</th>
+            
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in my_complaint %}
+          <tr style="background-color: #d9a3a3;">
+
+            <td>{{ i.user.username}}</td>
+            <td>{{ i.user_details.phone}}</td>
+            <td>{{ i.employee.user.username }}</td>
+            <td>{{ i.user_details.location}}</td>
+            <td>{{ i.complaint}}</td>
+            
+            
+            
+            <td>{{ i.date }}</td>
+
+           
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+
+  </table>
+  {% else %}
+
+  <span>No Leaves can be found...</span>
+  {% endif %}
+
+</div>
+
+{% endblock %}

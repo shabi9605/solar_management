@@ -1,0 +1,60 @@
+{% extends 'dashboard.html' %}
+
+
+{% block content %}
+
+
+
+
+<div class="table-responsive table-shadow" style="background-color: bisque;">
+    
+    {% if bookings %}
+    <table class="table">
+          <thead>
+            <tr>
+              <!-- <th scope="col">#</th> -->
+              <th scope="col">Customer</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Location</th>
+              <th scope="col">Wanted Date</th>
+              <th scope="col">Battery Type</th>
+              <th scope="col">Battery Brand</th>
+              <th scope="col">Unit</th>
+              <th scope="col">Date</th>
+              <th scope="col">Assign Employee</th>
+              
+             
+             
+            </tr>
+          </thead>
+          <tbody>
+              {% for i in bookings %}
+            <tr style="background-color: #d9a3a3;">
+
+              <td>{{ i.user.username}}</td>
+              <td>{{ i.user_details.phone }}</td>
+              <td>{{ i.location}}</td>
+              <td>{{ i.wanted_date}}</td>
+              <td>{{ i.battery_type}}</td>
+              <td>{{ i.battery_brand}}</td>
+              <td>{{ i.unit}}</td>
+              <td>{{ i.date}}</td>
+              <td><a href="{% url 'assign_employee' i.id %}">Assign Employee</a></td>
+              
+            
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+    </table>
+    {% else %}
+
+    <span>No applications can be found...</span>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

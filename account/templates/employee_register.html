@@ -1,0 +1,16 @@
+
+
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="background-color: palegreen;padding-top: 3em;padding-bottom: 3em;">
+    <center>
+	<h1 >Employee Registration </h1>
+	<form action="" method="POST">
+        {% csrf_token %}
+        {{user_form|crispy}}{{employee_registration_form|crispy}}
+        <input type="submit" value="REGISTER" style="margin-top: 1em;background-color: maroon;color: white;">
+    </form>
+</center>
+</div>
+{% endblock %}
